@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المقام الإبراهيمي | اختبار الاعتماد المهني</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css?v=3.0">
+</head>
+
+<body class="light-mode">
+    <div class="app-container">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="logo-container">
+                <i class="fa-solid fa-kaaba logo-icon">
+                </i>
+                <div class="logo-text">
+                    <h1>المقام الإبراهيمي</h1>
+                    <span>اختبار الاعتماد المهني</span>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button id="theme-toggle" class="icon-btn" title="تغيير المظهر">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Sections -->
+        <main>
+            <!-- 1. Welcome Section -->
+            <section id="welcome-section" class="active-section">
+                <div class="welcome-card glass-panel">
+                    <h2>مرحباً بك</h2>
+                    <p>الرجاء إدخال بياناتك للبدء</p>
+                    <form id="login-form">
+                        <div class="input-group">
+                            <label for="username">الاسم الثلاثي</label>
+                            <input type="text" id="username" placeholder="مثال: محمد أحمد علي" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="passport">رقم الجواز / الهوية</label>
+                            <input type="text" id="passport" placeholder="P12345678" required>
+                        </div>
+                        <button type="submit" class="btn primary-btn">دخول <i
+                                class="fa-solid fa-arrow-left"></i></button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 1.5 Sections Selection -->
+            <section id="sections-section" class="hidden-section">
+                <div class="section-header">
+                    <button id="back-to-login-btn" class="section-back-btn">
+                        <i class="fa-solid fa-arrow-right"></i> رجوع
+                    </button>
+                    <h2>اختر القسم</h2>
+                    <p>يرجى اختيار التخصص للمتابعة</p>
+                </div>
+                <div class="models-grid" id="sections-container">
+                    <!-- Sections will be injected by JS -->
+                </div>
+            </section>
+
+            <!-- 2. Dashboard Section (Model Selection) -->
+            <section id="dashboard-section" class="hidden-section">
+                <div class="section-header">
+                    <button id="back-to-sections-btn" class="section-back-btn">
+                        <i class="fa-solid fa-arrow-right"></i> رجوع
+                    </button>
+                    <h2>اختر نموذج الاختبار</h2>
+                    <p id="user-greeting">أهلاً بك</p>
+                </div>
+                <div class="models-grid" id="models-container">
+                    <!-- Models will be injected by JS -->
+                </div>
+            </section>
+
+            <!-- 3. Exam Section -->
+            <section id="exam-section" class="hidden-section">
+                <div class="exam-header glass-panel">
+                    <div class="completion-badge-container">
+                        <div class="completion-icon">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <div class="completion-info">
+                            <span class="completion-label">نسبة الإنجاز</span>
+                            <span id="completion-percentage" class="completion-value">0%</span>
+                        </div>
+                    </div>
+                    <div class="progress-info">
+                        <div class="progress-meta">
+                            <span id="question-counter" class="question-counter-badge">سؤال 1 / 30</span>
+                            <span id="answered-counter" class="answered-counter-badge">أجبت على 0 من 30</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exam Layout with Sidebar -->
+                <div class="exam-layout">
+                    <!-- Question Navigation Sidebar -->
+                    <div class="question-nav-sidebar glass-panel">
+                        <div class="sidebar-header">
+                            <h3><i class="fa-solid fa-list-check"></i> قائمة الأسئلة</h3>
+                        </div>
+                        <div class="nav-questions-list" id="nav-questions-list">
+                            <!-- Question links will be injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Main Content Area -->
+                    <div class="exam-main-content">
+                        <div class="question-container glass-panel" id="question-card">
+                            <!-- Question Content -->
+                        </div>
+
+                        <div class="exam-controls">
+                            <button id="back-to-models-btn" class="btn back-btn"><i class="fa-solid fa-arrow-right"></i>
+                                رجوع</button>
+                            <button id="prev-btn" class="btn secondary-btn" disabled><i
+                                    class="fa-solid fa-chevron-right"></i> السابق</button>
+                            <button id="next-btn" class="btn primary-btn">التالي <i
+                                    class="fa-solid fa-chevron-left"></i></button>
+                            <button id="finish-btn" class="btn success-btn hidden"><i
+                                    class="fa-solid fa-flag-checkered"></i> إنهاء الاختبار</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Sidebar Toggle -->
+                <button id="sidebar-toggle" class="sidebar-toggle-btn" title="قائمة الأسئلة">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p> برمجة م/ محمد حسين . جميع الحقوق محفوظة. 2026 &copy;</p>
+        </footer>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <div class="result-header">
+                <div class="score-circle">
+                    <span id="final-score">0%</span>
+                </div>
+                <h3 id="result-title">نتيجة الاختبار</h3>
+                <div id="time-consumed-badge" class="time-consumed-badge">
+                    <i class="fa-solid fa-stopwatch"></i>
+                    <span>الوقت المستغرق: <strong id="time-consumed-text">0 دقيقة</strong></span>
+                </div>
+            </div>
+            <div class="result-details" id="result-details">
+                <!-- Details injected by JS -->
+            </div>
+            <button id="close-modal-btn" class="btn primary-btn"><i class="fa-solid fa-check"></i> العودة
+                للنماذج</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/dataSeller.js"></script>
+    <script src="js/dataPackaging.js"></script>
+    <script src="js/dataCooker.js"></script>
+    <script src="js/data_driver.js"></script>
+    <script src="js/dataPrivateDriver.js"></script>
+    <script src="js/dataShelfStocker.js"></script>
+    <script src="js/dataManufacturing.js"></script>
+    <script src="js/dataConstruction.js"></script>
+    <script src="js/dataProductSorter.js"></script>
+    <script src="js/dataAttar.js"></script>
+    <script src="js/dataWorkshopWorker.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
